@@ -19,7 +19,7 @@ public class CourseInfoResponseDto {
     private final String representativeProName;
     private final String representativePhrase;
 
-    // 생성자: GolfCourse와 대표 Professional 정보를 받아 DTO를 만듭니다.
+
     public CourseInfoResponseDto(GolfCourse course, Professional representativePro) {
         this.courseId = course.getCourseId();
         this.courseName = course.getName();
@@ -41,7 +41,7 @@ public class CourseInfoResponseDto {
             this.representativePhrase = null;
         }
 
-        // GolfCourse 엔티티에 imageUrl 필드가 있다고 가정
+
         this.imageUrl = null;
     }
 }

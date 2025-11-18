@@ -24,7 +24,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
 
-    // [수정] 역할에 맞게 필요한 모든 서비스를 주입받습니다.
     private final ReservationService reservationService;
     private final RegionService regionService;
     private final DistrictService districtService;
@@ -33,18 +32,12 @@ public class AdminController {
     private final ProfessionalAdminService professionalAdminService;
 
 
-    /**
-     * [수정] 첫 번째 드롭다운: 모든 Region 목록을 가져옵니다.
-     * 이제 RegionService를 호출합니다.
-     */
     @GetMapping("/regions")
     public ResponseEntity<List<RegionDto>> getAllRegions() {
         return ResponseEntity.ok(regionService.findAll());
     }
 
-    /**
-     * [신규] 두 번째 드롭다운: 특정 Region에 속한 District 목록을 가져옵니다.
-     */
+
     @GetMapping("/districts/all") // 기존 API와 주소가 겹치지 않도록 /all을 추가
     public ResponseEntity<List<DistrictDto>> getAllDistricts() {
         // DistrictService에 모든 District를 조회하는 findAll() 메서드를 호출합니다.
@@ -70,8 +63,6 @@ public class AdminController {
         return ResponseEntity.ok(reservations);
     }
 
-
-    // --- 이하 Reservation 관련 API는 ID 타입만 Long으로 통일합니다 ---
 
     @GetMapping("/timeslots")
     public ResponseEntity<List<TimeSlotDto>> getTimeSlotsByDate(
@@ -105,25 +96,21 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
-    /* 이하 골프장 관리 및 강사 관리 컨트롤러 */
 
-    // 1. 특정 골프장의 상세 정보를 조회하는 API
-    // GET /api/admin/courses/{id}
     @GetMapping("/courses/{id}")
     public ResponseEntity<AdminCourseDetailDto> getCourseDetails(@PathVariable Long id) {
         AdminCourseDetailDto courseDetails = courseAdminService.findCourseDetailsById(id);
         return ResponseEntity.ok(courseDetails);
     }
 
-    // 2. 특정 골프장에 소속된 강사 목록을 조회하는 API
-    // GET /api/admin/courses/{id}/professionals
+
     @GetMapping("/courses/{id}/professionals")
     public ResponseEntity<List<AdminProListDto>> getProfessionalsByCourse(@PathVariable Long id) {
         List<AdminProListDto> professionals = courseAdminService.findProfessionalsByCourse(id);
         return ResponseEntity.ok(professionals);
     }
     
-    // 골프장 CRUD 기능
+
 
     @PostMapping("/courses")
     public ResponseEntity<Long> createCourse(@RequestBody CourseRequestDto requestDto) {
@@ -150,8 +137,6 @@ public class AdminController {
         golfCourseService.deleteCourse(id);
         return ResponseEntity.noContent().build(); // 성공적으로 삭제되었으나 본문 내용 없음 (204)
     }
-
-
 
     //강사 CRUD 기능/////////////////
 

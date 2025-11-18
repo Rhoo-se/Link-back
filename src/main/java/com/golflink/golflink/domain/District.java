@@ -24,13 +24,12 @@ public class District {
 
     private String name;
 
-    // [추가] Region과의 N:1 관계 설정
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     private Region region;
 
-    // [추가] GolfCourse와의 1:N 관계 설정
     @JsonManagedReference
     @OneToMany(mappedBy = "district")
     private List<GolfCourse> golfCourses = new ArrayList<>();

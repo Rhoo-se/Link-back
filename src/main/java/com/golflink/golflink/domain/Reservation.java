@@ -33,5 +33,5 @@ public class Reservation {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    // Getter, Setter, 생성자 등은 Lombok 어노테이션(@Getter, @Setter 등)이나 직접 생성
+
 }

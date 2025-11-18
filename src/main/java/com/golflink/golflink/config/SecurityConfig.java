@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authz -> authz
-                        // 1. 고객용 API와 로그인 API는 인증 없이 모두 허용
+
                         .requestMatchers(
                                 "/", // 헬스 체크
                                 "/api/login", // 로그인
@@ -52,16 +52,16 @@ public class SecurityConfig {
                                 "/api/sub-districts/**",
                                 "/api/matching-reservations"
                         ).permitAll()
-                        // 2. 관리자용 API는 ADMIN 역할이 있어야만 허용
+
                         .requestMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/admin/**").hasRole("ADMIN")
 
-                        // 3. 헬스 체크 경로 허용
+                        //헬스 체크 경로 허용
                         .requestMatchers("/").permitAll()
 
-                        // 4. 나머지 모든 요청은 막습니다. (더 안전)
+
                         .anyRequest().denyAll()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
@@ -75,8 +75,6 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(List.of("http://localhost:5173", "https://golflink.cloud", "https://www.golflink.cloud", "https://link-front-omega.vercel.app"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        // --- 이 부분이 수정되었습니다 ---
-        // 와일드카드(*) 대신 허용할 헤더를 명시적으로 지정합니다.
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
 
         configuration.setAllowCredentials(true);

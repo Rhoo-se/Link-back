@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class ReservationResponseDto {
 
     private final Long reservationId;
-    private final String proName; // pro_id 대신 프로 이름
+    private final String proName;
     private final String userName;
     private final String phoneNumber;
     private final LocalDate reservationDate;

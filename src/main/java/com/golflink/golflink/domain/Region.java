@@ -22,7 +22,7 @@ public class Region {
 
     private String name;
 
-    // [추가] District와의 1:N 관계 설정
+    //District와의 1:N 관계 설정
     @JsonManagedReference
     @OneToMany(mappedBy = "region")
     private List<District> districts = new ArrayList<>();

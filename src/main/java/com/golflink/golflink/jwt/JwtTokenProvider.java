@@ -22,12 +22,12 @@ public class JwtTokenProvider {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private long tokenValidTime = 240 * 60 * 1000L; // 토큰 유효시간 30분
+    private long tokenValidTime = 240 * 60 * 1000L;
 
     private final CustomUserDetailsService userDetailsService;
 
     // JWT 토큰 생성
-    public String createToken(String username, List<String> roles) { // 파라미터를 List<String>으로 받습니다.
+    public String createToken(String username, List<String> roles) {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles);
         Date now = new Date();
@@ -50,7 +50,7 @@ public class JwtTokenProvider {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
-    // Request의 Header에서 토큰 값을 가져옵니다. "Authorization": "Bearer TOKEN_VALUE"
+
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {

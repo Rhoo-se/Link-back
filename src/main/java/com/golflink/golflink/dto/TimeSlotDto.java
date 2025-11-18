@@ -6,10 +6,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor // 모든 필드를 인자로 받는 생성자 추가
+@AllArgsConstructor
 public class TimeSlotDto {
     private String time;
-    private String status; // "available", "booked", "blocked"
+    private String status;
     private String userName; // 예약한 사용자 이름
     private Long reservationId; // 예약을 취소할 때 필요한 ID
     private String coachingPart;

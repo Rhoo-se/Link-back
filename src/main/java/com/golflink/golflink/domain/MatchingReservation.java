@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "matching_reservations")
 @Getter
 @Setter
-@NoArgsConstructor // JPA는 기본 생성자를 필요로 합니다.
+@NoArgsConstructor
 public class MatchingReservation {
 
     @Id
@@ -59,7 +59,7 @@ public class MatchingReservation {
     @Column(name = "requests")
     private String requests;
 
-    @CreationTimestamp // 데이터 생성 시 자동으로 현재 시간이 기록됩니다.
+    @CreationTimestamp // 데이터 생성 시 자동으로 현재 시간이 기록
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

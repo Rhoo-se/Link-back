@@ -14,7 +14,7 @@ public class ProfessionalDetailDto {
     private final int price;
     private final String packageInfo;
     private final String phrase;
-    private final String specialty;   // [추가] 프로 특이사항
+    private final String specialty;
 
     private final CourseInfo course; // 중첩 객체로 골프장 상세 정보 포함
 

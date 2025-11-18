@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BlockedSlotRepository extends JpaRepository<BlockedSlot, Long> {
 
-    // 특정 날짜의 예약 불가 목록을 조회하는 메서드
+
     List<BlockedSlot> findByBlockedDate(LocalDate date);
     @Transactional
     void deleteByBlockedDateAndBlockedTime(LocalDate date, String time);

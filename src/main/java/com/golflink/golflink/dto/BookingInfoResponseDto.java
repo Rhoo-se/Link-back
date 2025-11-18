@@ -21,10 +21,7 @@ public class BookingInfoResponseDto {
     private final int price;
     private final String packageInfo;
 
-    /**
-     * Service 계층에서 DB로부터 조회한 Professional 엔티티를 받아
-     * BookingPage에 필요한 데이터만으로 가공하는 생성자입니다.
-     */
+
     public BookingInfoResponseDto(Professional professional) {
         // 프로 정보 매핑
         this.proId = professional.getProId();
